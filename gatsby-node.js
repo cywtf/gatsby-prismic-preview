@@ -9,9 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      posts: allPrismicBlogPost(
-        sort: { fields: last_publication_date, order: DESC }
-      ) {
+      allPrismicBlogPost(sort: { fields: last_publication_date, order: DESC }) {
         edges {
           node {
             id
@@ -22,7 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const postsList = result.data.posts.edges
+  const postsList = result.data.allPrismicBlogPost.edges
 
   // TODO: Cy: If you dont choose a category in blog post it breaks
 
